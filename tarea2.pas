@@ -12,8 +12,13 @@ begin
 end;
 
 function comparaPalabra(p1, p2: Palabra):Comparacion;
+var slaida: Comparacion;
 begin
-    
+    if p1 < p2 then
+      slaida:= menor;
+    else if p1 > p2 then
+      slaida:= mayor;
+    else salida:= igual;
 end;
 
 function mayorPalabraCant(pc1, pc2: PalabraCant): boolean;
