@@ -12,13 +12,18 @@ begin
 end;
 
 function comparaPalabra(p1, p2: Palabra):Comparacion;
-var slaida: Comparacion;
+var 
+  salida: Comparacion;
+  i: integer;
 begin
-    if p1 < p2 then
-      slaida:= menor;
-    else if p1 > p2 then
-      slaida:= mayor;
-    else salida:= igual;
+  i := 1;
+  while (i <= p1.tope) and (i <= p2.tope) do
+    if p1.cadena[i] < p2.cadena[i] then
+      salida:= menor;
+    else if p1.cadena[i] > p2.cadena[i]  then
+      salida:= mayor;
+    else 
+      salida:= igual;
   comparaPalabra:= salida;
 end;
 
