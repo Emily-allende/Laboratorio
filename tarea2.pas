@@ -31,6 +31,7 @@ begin
       if pc1.palabra > pc2.palabra then
         salida := true;
     salida := false;
+  mayorPalabraCant:= salida;
 end;
 
 procedure agregarOcurrencia(p : Palabra; var pals: Ocurrencias);
