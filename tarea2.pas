@@ -19,6 +19,7 @@ begin
     else if p1 > p2 then
       slaida:= mayor;
     else salida:= igual;
+  comparaPalabra:= salida;
 end;
 
 function mayorPalabraCant(pc1, pc2: PalabraCant): boolean;
