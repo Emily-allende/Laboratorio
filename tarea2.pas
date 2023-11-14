@@ -23,15 +23,8 @@ begin
 end;
 
 function mayorPalabraCant(pc1, pc2: PalabraCant): boolean;
-var salida : boolean;
 begin
-    if pc1.cantidad > pc2.cantidad then
-      salida := true;
-    else if pc1.cantidad = pc2.cantidad then
-      if pc1.palabra > pc2.palabra then
-        salida := true;
-    salida := false;
-  mayorPalabraCant:= salida;
+  mayorPalabraCant:= (pc1.cant > pc2.cant) or (pc1.cant = pc2.cant);
 end;
 
 procedure agregarOcurrencia(p : Palabra; var pals: Ocurrencias);
