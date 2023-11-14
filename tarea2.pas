@@ -4,9 +4,9 @@ var
     i: integer;
 begin
     valueHash:= semilla;
-  for i := 1 to Length(p) do
+  for i := 1 to p.tope do
   begin
-    valueHash := (valueHash * paso + Ord(p[i])) mod N;
+    valueHash := (valueHash * paso + Ord(p.cadena[i])) mod N;
   end;
   hash := valueHash;
 end;
