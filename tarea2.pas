@@ -47,8 +47,10 @@ begin
 end;
 
 procedure inicializarPredictor(var pred: Predictor);
+var i :integer;
 begin
-    
+    for i :=1 to MAXHASH do
+      pred[i] := NIL
 end;
 
 procedure entrenarPredictor(txt: Texto; var pred: Predictor);
