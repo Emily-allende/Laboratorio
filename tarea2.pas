@@ -17,7 +17,8 @@ var
   i: integer;
 begin
   i := 1;
-  while (i <= p1.tope) and (i <= p2.tope) do
+  while (i <= p1.tope) and (i <= p2.tope) and (p1.cadena[i] = p1.cadena[i]) do
+  i:= i+1;
     if p1.cadena[i] < p2.cadena[i] then
       salida:= menor
     else if p1.cadena[i] > p2.cadena[i]  then
