@@ -54,8 +54,16 @@ begin
 end;
 
 procedure entrenarPredictor(txt: Texto; var pred: Predictor);
+var iterar, sig: Texto;
 begin
-    
+    iterar := txt;
+    while iterar <> NIL do
+    begin
+      sig := iterar^.sig;
+      if (iterar^.sig <> NIL) then
+        agregarOcurrencia(sig^.info, pred[hash(SEMILLA, PASO, MAXHASH, iterar^.info)]);
+      iterar := iterar^.sig;
+  end;
 end;
 
 procedure insOrdAlternativas(pc: PalabraCant; var alts: Alternativas);
@@ -71,7 +79,6 @@ begin
         j := alts.pals[i].cant;
         alts.pals[i].cant := alts.pals[i-1].cant;
         alts.pals[i-1].cant := j;
-
         i := i-1;
       end;
     end;
