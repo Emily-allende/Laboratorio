@@ -33,17 +33,20 @@ begin
 end;
 
 procedure agregarOcurrencia(p : Palabra; var pals: Ocurrencias);
+var nuevNodo, iterar: Ocurrencias;
 begin
-  while p <> NIL do 
+  iterar := pals;
+  while (iterar <> NIL)  do 
+    iterar := iterar^.sig;
+  if iterar = NIL then
   begin
-    if p = pals then Nodo.palc = nodo.palc + 1 
-    else 
-    begin
-      new(Nodo^.sig);
-      Nodo^.sig^.palc := p;
-      Nodo^.sig^.sig := NIL;
-    end;
-  end;   
+    new(nuevNodo);
+    nuevNodo^.palc.pal := p;
+    nuevNodo^.palc.cant := 1;
+    nuevNodo^.sig := pals;
+  end
+  else
+    iterar^.palc.cant := iterar^.palc.cant +1;
 end;
 
 procedure inicializarPredictor(var pred: Predictor);
