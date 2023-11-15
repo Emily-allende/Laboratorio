@@ -78,6 +78,15 @@ begin
 end;
 
 procedure obtenerAlternativas(p: Palabra; pred: Predictor; var alts: Alternativas);
+var 
+  valorHash: Natural;
+  iterar: Ocurrencias;
 begin
-    
+    valorHash :=  hash(SEMILLA, PASO, MAXHASH, p);
+    iterar := pred[valorHash];
+    while (iterar <> nil) do
+    begin
+        insOrdAlternativas(iterar^.palc, alts);
+        iterar := iterar^.sig;
+    end;
 end;
