@@ -19,9 +19,9 @@ begin
   i := 1;
   while (i <= p1.tope) and (i <= p2.tope) do
     if p1.cadena[i] < p2.cadena[i] then
-      salida:= menor;
+      salida:= menor
     else if p1.cadena[i] > p2.cadena[i]  then
-      salida:= mayor;
+      salida:= mayor
     else 
       salida:= igual;
   comparaPalabra:= salida;
@@ -59,8 +59,22 @@ begin
 end;
 
 procedure insOrdAlternativas(pc: PalabraCant; var alts: Alternativas);
+var i,j : integer;
 begin
-    
+    if alts.tope < MAXALTS then
+    begin
+      alts.tope := alts.tope +1;
+      alts.pals[alts.tope] := pc;
+      i:= alts.tope;
+      while (i>1) and (mayorPalabraCant(alts.pals[i], alts.pals[i-1])) do
+      begin
+        j := alts.pals[i].cant;
+        alts.pals[i].cant := alts.pals[i-1].cant;
+        alts.pals[i-1].cant := j;
+
+        i := i-1;
+      end;
+    end;
 end;
 
 procedure obtenerAlternativas(p: Palabra; pred: Predictor; var alts: Alternativas);
