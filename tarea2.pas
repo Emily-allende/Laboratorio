@@ -27,17 +27,16 @@ begin
       salida:= igual;
   comparaPalabra:= salida;
 end;
-
 function mayorPalabraCant(pc1, pc2: PalabraCant): boolean;
 begin
-  mayorPalabraCant:= (pc1.cant > pc2.cant) or (pc1.cant = pc2.cant);
+  mayorPalabraCant:= (pc1.cant > pc2.cant) or (pc1.cant = pc2.cant) and (comparaPalabra(pc1.pal,pc2.pal)=mayor);
 end;
 
 procedure agregarOcurrencia(p : Palabra; var pals: Ocurrencias);
 var nuevNodo, iterar: Ocurrencias;
 begin
   iterar := pals;
-  while (iterar <> NIL)  do 
+  while (iterar <> NIL) and (comparaPalabra(iterar^.palc.pal,p)<>igual) do 
     iterar := iterar^.sig;
   if iterar = NIL then
   begin
@@ -49,6 +48,7 @@ begin
   else
     iterar^.palc.cant := iterar^.palc.cant +1;
 end;
+
 
 procedure inicializarPredictor(var pred: Predictor);
 var i :integer;
@@ -87,7 +87,6 @@ begin
       end;
     end;
 end;
-
 procedure obtenerAlternativas(p: Palabra; pred: Predictor; var alts: Alternativas);
 var 
   valorHash: Natural;
@@ -95,7 +94,8 @@ var
 begin
     valorHash :=  hash(SEMILLA, PASO, MAXHASH, p);
     iterar := pred[valorHash];
-    while (iterar <> nil) do
+    alts.tope := 0; 
+    while (iterar <> nil) and (alts.tope<MAXALTS) do
     begin
         insOrdAlternativas(iterar^.palc, alts);
         iterar := iterar^.sig;
