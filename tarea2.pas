@@ -6,7 +6,7 @@ begin
     valueHash:= semilla;
   for i := 1 to p.tope do
   begin
-    valueHash := (valueHash * paso + Ord(p.cadena[i]));
+    valueHash := (valueHash * paso + Ord(p.cadena[i])) mod N;
   end;
   hash := valueHash;
 end;
@@ -55,7 +55,6 @@ begin
   else
     iterar^.palc.cant := iterar^.palc.cant +1;
 end;
-
 
 procedure inicializarPredictor(var pred: Predictor);
 var i :integer;
