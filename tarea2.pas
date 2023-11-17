@@ -32,17 +32,25 @@ begin
 end;
 
 procedure agregarOcurrencia(p : Palabra; var pals: Ocurrencias);
-var nuevNodo, iterar: Ocurrencias;
+var ant, iterar: Ocurrencias;
 begin
   iterar := pals;
+  ant:= NIL;
   while (iterar <> NIL) and (comparaPalabra(iterar^.palc.pal,p)<>igual) do 
+  begin
+    ant:= iterar;
     iterar := iterar^.sig;
+  end;
   if iterar = NIL then
   begin
-    new(nuevNodo);
-    nuevNodo^.palc.pal := p;
-    nuevNodo^.palc.cant := 1;
-    nuevNodo^.sig := pals;
+    new(iterar);
+    iterar^.palc.pal := p;
+    iterar^.palc.cant := 1;
+    iterar^.sig := pals;
+    if ant = NIL then
+      pals := iterar
+    else
+      ant^.sig := iterar;
   end
   else
     iterar^.palc.cant := iterar^.palc.cant +1;
