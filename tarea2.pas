@@ -6,30 +6,29 @@ begin
     valueHash:= semilla;
   for i := 1 to p.tope do
   begin
-    valueHash := (valueHash * paso + Ord(p.cadena[i])) mod N;
+    valueHash := (valueHash * paso + Ord(p.cadena[i]));
   end;
   hash := valueHash;
 end;
 
 function comparaPalabra(p1, p2: Palabra):Comparacion;
 var 
-  salida: Comparacion;
   i: integer;
 begin
   i := 1;
-  while (i <= p1.tope) and (i <= p2.tope) and (p1.cadena[i] = p1.cadena[i]) do
+  while (i <= p1.tope) and (i <= p2.tope) and (p1.cadena[i] = p2.cadena[i]) do
   i:= i+1;
     if p1.cadena[i] < p2.cadena[i] then
-      salida:= menor
+      comparaPalabra:= menor
     else if p1.cadena[i] > p2.cadena[i]  then
-      salida:= mayor
+      comparaPalabra:= mayor
     else 
-      salida:= igual;
-  comparaPalabra:= salida;
+      comparaPalabra:= igual;
 end;
+
 function mayorPalabraCant(pc1, pc2: PalabraCant): boolean;
 begin
-  mayorPalabraCant:= (pc1.cant > pc2.cant) or (pc1.cant = pc2.cant) and (comparaPalabra(pc1.pal,pc2.pal)=mayor);
+  mayorPalabraCant:= (pc1.cant > pc2.cant) or (pc1.cant = pc2.cant) and (comparaPalabra(pc1.pal,pc2.pal)= mayor);
 end;
 
 procedure agregarOcurrencia(p : Palabra; var pals: Ocurrencias);
@@ -87,6 +86,7 @@ begin
       end;
     end;
 end;
+
 procedure obtenerAlternativas(p: Palabra; pred: Predictor; var alts: Alternativas);
 var 
   valorHash: Natural;
